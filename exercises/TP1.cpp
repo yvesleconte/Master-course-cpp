@@ -1,17 +1,33 @@
 #include <iostream>
 #include <cmath>
 
-using namespace std;
-
 void square_root();
-float harmonique(int);
+void christmas_tree(int );
+float harmonic(int);
 
 
 int main() {
-    cout<<"Execute exercise 1";
-    square_root();
-    cout<<"Execute exercise 2";
-    cout<<harmonique(10);
+    std::cout<<"Do you want to execute exercise 1 ? (Yes/No)\n";
+    std::string execute;
+    std::cin>> execute;
+    int value;
+    if (execute=="Yes"){
+        square_root();
+    }
+    std::cout<<"Do you want to execute exercise 2 ? (Yes/No)\n";
+    std::cin>> execute;
+    if (execute=="Yes"){
+        std::cout<<"Enter a non-negative integer: ";
+        std::cin>>value;
+        std::cout<<harmonic(value);
+    }
+    std::cout<<"Do you want to execute exercise 3 ? (Yes/No)\n";
+    std::cin>>execute;
+    if (execute == "Yes") {
+        std::cout<<"Enter the height of the tree:";
+        std::cin>>value;
+        christmas_tree(value);
+    }
     return 0;
 }
 
@@ -20,30 +36,43 @@ int main() {
 void square_root(){
     int number=1;
     while (number !=0){
-        cout << "Entrez une valeur positive (0 pour terminer) :";
-        cin >> number;
+        std::cout << "Entrez une valeur positive (0 pour terminer) :";
+        std::cin >> number;
         if (number>0){
-            cout <<"La racine de "<<number<<" est : " ;
-            cout << sqrt(number)<<endl;
+            std::cout <<"La racine de "<<number<<" est : " ;
+            std::cout << sqrt(number)<<std::endl;
         }
         else if (number == 0){
-            cout<< "Fin du programme.";
+            std::cout<< "Fin du programme.\n";
         }
         else {
-            cout<< "Erreur, valeur négative";
+            std::cout<< "Erreur, valeur négative";
         }
     }
 }
 
 // Exercise 2
 
-float harmonique(int n){
-    float somme = 0;
+float harmonic(int n){
+    float sum = 0;
     for (int i=1; i<n+1; i++){
-        somme = somme + 1/float(i);
+        sum = sum + 1/float(i);
     }
-    return somme;
+    return sum;
 }
 
 // Exercise 3
+
+void christmas_tree(int height){
+    for (int i=0; i<height;i++ ){
+        std::string left_equals(height-i-1, '=');
+        std::string left_stars(i, '*');
+        std::string right_equals(height-i-1, '=');
+        std::string right_stars(i, '*');
+        std::cout<<left_equals<<left_stars<<"*"<<right_stars<<right_equals<<std::endl;
+    }
+}
+
+// Exercise 4
+
 
