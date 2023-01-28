@@ -7,6 +7,7 @@ float harmonic(int);
 int tribonacci(int);
 float calculator(float, float, std::string);
 void count_function();
+int euclide(int,int);
 int counter = 0;
 
 int main() {
@@ -52,10 +53,25 @@ int main() {
         std::cin>>operation;
         std::cout<<calculator(x,y,operation)<<std::endl;
     }
-    count_function();
-    count_function();
-    count_function();
-    return 0;
+    std::cout<<"Do you want to execute exercise 6 ? (Yes/No)\n";
+    std::cin>>execute;
+    if (execute == "Yes"){
+        std::cout<<"Here for example we call 3 times the counting function of exercise 6.\n";
+        count_function();
+        count_function();
+        count_function();
+    }
+    std::cout<<"Do you want to execute exercise 7 ? (Yes/No)\n";
+    std::cin>>execute;
+    if (execute == "Yes"){
+        int a;
+        int b;
+        std::cout<<"Enter a first integer:\n";
+        std::cin>>a;
+        std::cout<<"Enter a second integer:\n";
+        std::cin>>b;
+        std::cout<<"The greatest common diviser of those two integers is "<<euclide(a,b)<<std::endl;
+    }
 }
 
 // Exercise 1
@@ -152,3 +168,14 @@ void count_function(){
 
 // Exercise 7
 
+int euclide(int a, int b){
+    while (a!=b){
+        if (a>b){
+            a-=b;
+        }
+        else{
+            b-=a;
+        }
+    }
+    return a;
+}
