@@ -30,6 +30,7 @@ Complexe exercise_1_a(Complexe, Complexe);
 Complexe exercise_1_b(float, Complexe*);
 Complexe exercise_2(Complexe*, int);
 void exercise_3(enreg*);
+void inscr_personne(personne);
 
 
 int main() {
@@ -90,7 +91,12 @@ int main() {
         std::cout << "\nBefore executing the function exercise_3 we have that the stock is "<<value.stock<<" and the 'ventes' is "<<value.ventes[0]<<std::endl;
         exercise_3(&value);
         std::cout << "\nAfter executing the function exercise_3 we have that the stock is "<<value.stock<<" and the 'ventes' is "<<value.ventes[0]<<std::endl;
-
+    }
+    std::cout<<"\nDo you want to execute exercise 4 ? (Yes/No)";
+    std::cin >> execute;
+    if (execute == "Yes"){
+        personne individu{};
+        inscr_personne(individu);
     }
     return 0;
 }
@@ -128,12 +134,11 @@ void exercise_3(enreg *value){
 
 // Exercise 4
 
-void inscr_personne(personne &individual){
-    char temp_nom[LMAX_NOM];
+void inscr_personne(personne individual){
     std::cout << "\nGive separately the day, then the month, then the year of date_inscr ";
     std::cin >> individual.date_inscr.jour;
     std::cin >> individual.date_inscr.mois;
     std::cin >> individual.date_inscr.annee;
-    std::cout <<"\nGive the name of the individual ";
+    std::cout <<"\nGive the name of the individual\n ";
     std::cin >> individual.nom[0];
 }
