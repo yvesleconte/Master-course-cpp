@@ -20,7 +20,7 @@ public:
 
     void jouer(int a, int b);
 
-    typecase gagnant();
+    typecase gagnant(int round, int size);
 };
 
 

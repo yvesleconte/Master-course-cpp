@@ -3,108 +3,67 @@
 
 
 Morpion::Morpion() {
-    std::cout << "Morpion initialise.\n";
+    std::cout<<"Morpion initialise.\n";
 }
 
 void Morpion::jouer(int a, int b) {
-    int size = sizeof arr / sizeof arr[0];
-    if (0 <= a && a < size && 0 <= b && b < size && arr[a][b] == 0) {
-        if (tour % 2 == 0) {
+    int size = sizeof arr /sizeof arr[0];
+    if (0<=a && a<size && 0<=b && b<size && arr[a][b] ==0){
+        if (tour%2==0){
             arr[a][b] = 2;
-        } else {
+        }
+        else{
             arr[a][b] = 1;
         }
-        typecase winner = gagnant();
-        if (tour == 9 && winner == vide){
-            std::cout<<"Draw";
-        }
-        else if(winner == joueur1 || winner ==joueur2){
-            std::cout<<"The winner is: "<<winner;
+        typecase winner = gagnant(tour, size);
+        if (winner != 0){
+            std::cout<<"\nThe winner is : "<<winner<<std::endl;
         }
         tour = tour + 1;
-    } else {
-        std::cout << "\nError" << std::endl;
+    }
+    else{
+        std::cout<<"\nError"<<std::endl;
     }
 }
 
-typecase Morpion::gagnant() {
-    if ((arr[0][0] == arr[1][1] && arr[1][1] == arr[2][2]) || (arr[0][2] == arr[1][1] && arr[1][1] == arr[2][0])) {
-        if (arr[1][1] == 1){
-            return joueur1;
-        }
-        else if (arr[1][1] == 2){
-            return joueur2;
-        }
-        else{
-            return vide;
-        }
-    }
-    else if (arr[0][0] == arr[0][1] && arr[0][1] == arr[0][2]){
-        if (arr[0][0] == 1){
-            return joueur1;
-        }
-        else if (arr[0][0] == 2){
-            return joueur2;
-        }
-        else{
-            return vide;
+typecase Morpion::gagnant(int round, int size) {
+    if ((arr[0][0] == arr[1][1] && arr[1][1]==arr[2][2]) || (arr[0][2] == arr[1][1] && arr[1][1] == arr[2][0])){
+        if (arr[1][1]!=0){
+            if (round%2==0){
+                return joueur2;
+            }
+            else{
+                return joueur1;
+            }
         }
     }
-    else if (arr[1][0] == arr[1][1] && arr[1][1] == arr[1][2]){
-        if (arr[1][0] == 1){
-            return joueur1;
+    // Check columns and rows
+    for (int i{0};i<size;++i){
+        int value_1 = 1;
+        int value_2 = 1;
+        for (int j{0};j<size-1;++j){
+            // Check column i
+            if (arr[j][i] == arr[j+1][i]){
+                if (arr[j][i]!=0){
+                    value_1 = value_1 + 1;
+                }
+            }
+            // Check row i
+            if (arr[i][j] == arr[i][j+1]){
+                if (arr[i][j]!=0){
+                    value_2 = value_2 + 1;
+                }
+            }
         }
-        else if (arr[1][0] == 2){
-            return joueur2;
+        // Check if the player is wins
+        if (value_1 == size || value_2 == size){
+            if (round%2==0){
+                return joueur2;
+            }
+            else{
+                return joueur1;
+            }
         }
-        else{
-            return vide;
-        }
-    }
-    else if (arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2]){
-        if (arr[2][0] == 1){
-            return joueur1;
-        }
-        else if (arr[2][0] == 2){
-            return joueur2;
-        }
-        else{
-            return vide;
-        }
-    }
-    else if (arr[0][0] == arr[1][0] && arr[1][0] == arr[2][0]){
-        if (arr[0][0] == 1){
-            return joueur1;
-        }
-        else if (arr[0][0] == 2){
-            return joueur2;
-        }
-        else{
-            return vide;
-        }
-    }
-    else if (arr[0][1] == arr[1][1] && arr[1][1] == arr[2][1]){
-        if (arr[0][1] == 1){
-            return joueur1;
-        }
-        else if (arr[0][1] == 2){
-            return joueur2;
-        }
-        else{
-            return vide;
-        }
-    }
-    else if (arr[0][2] == arr[1][2] && arr[1][2] == arr[2][2]){
-        if (arr[0][2] == 1){
-            return joueur1;
-        }
-        else if (arr[0][2] == 2){
-            return joueur2;
-        }
-        else{
-            return vide;
-        }
-
     }
     return vide;
 }
