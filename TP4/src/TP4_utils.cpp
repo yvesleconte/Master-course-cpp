@@ -55,7 +55,7 @@ typecase Morpion::gagnant(int round, int size) {
                 }
             }
         }
-        // Check if the player is wins
+        // Check if the player wins
         if (value_1 == size || value_2 == size){
             if (round%2==0){
                 return joueur2;
