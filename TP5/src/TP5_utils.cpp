@@ -39,3 +39,4 @@ bool Ensemble::ajouter(int elem) {
     }
 }
 
+
