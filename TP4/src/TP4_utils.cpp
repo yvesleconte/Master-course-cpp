@@ -27,16 +27,23 @@ void Morpion::jouer(int a, int b) {
 }
 
 typecase Morpion::gagnant(int round, int size) {
-    if ((arr[0][0] == arr[1][1] && arr[1][1]==arr[2][2]) || (arr[0][2] == arr[1][1] && arr[1][1] == arr[2][0])){
-        if (arr[1][1]!=0){
-            if (round%2==0){
-                return joueur2;
+    int value_diag_1 = 1;
+    int value_diag_2 = 1;
+
+    // Check diagonals
+    for (int i{0};i<size-1;i++){
+        if (arr[i][i] == arr[i+1][i+1]) {
+            if (arr[i][i] != 0) {
+                value_diag_1 = value_diag_1 + 1;
             }
-            else{
-                return joueur1;
+        }
+        if (arr[i][size-i-1] == arr[i+1][size-i-2]){
+            if (arr[i][size-i-1]!=0){
+                value_diag_2 = value_diag_2 + 1;
             }
         }
     }
+
     // Check columns and rows
     for (int i{0};i<size;++i){
         int value_1 = 1;
@@ -56,7 +63,7 @@ typecase Morpion::gagnant(int round, int size) {
             }
         }
         // Check if the player wins
-        if (value_1 == size || value_2 == size){
+        if (value_1 == size || value_2 == size || value_diag_1 == size || value_diag_2 == size){
             if (round%2==0){
                 return joueur2;
             }
